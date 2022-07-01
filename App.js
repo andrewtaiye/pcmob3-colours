@@ -9,11 +9,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation, StackActions } from "@react-navigation/native";
 
 import BlockRGB from "./components/BlockRGB";
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   const [colorArray, setColorArray] = useState([]);
 
   function addColor() {
@@ -29,7 +29,11 @@ function HomeScreen() {
   }
 
   function renderItem({ item }) {
-    return <BlockRGB red={item.red} green={item.green} blue={item.blue} />;
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate("Colour Details", item)}>
+        <BlockRGB red={item.red} green={item.green} blue={item.blue} />
+      </TouchableOpacity>
+    );
   }
 
   return (
@@ -42,6 +46,18 @@ function HomeScreen() {
   );
 }
 
+function ColourScreen({ route }) {
+  const { red, green, blue } = route.params;
+
+  return (
+    <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex: 1, justifyContent: 'center', alignItems: 'center',}}>
+      <Text>Red: {red}</Text>
+      <Text>Green: {green}</Text>
+      <Text>Blue: {blue}</Text>
+    </View>
+  );
+}
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -49,6 +65,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name={"Colour List"} component={HomeScreen} />
+        <Stack.Screen name={"Colour Details"} component={ColourScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
