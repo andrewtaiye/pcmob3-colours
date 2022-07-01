@@ -14,6 +14,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import BlockRGB from "./components/BlockRGB";
 
 function HomeScreen() {
+  const [colorArray, setColorArray] = useState([]);
+
   function addColor() {
     setColorArray([
       ...colorArray,
@@ -25,8 +27,6 @@ function HomeScreen() {
       },
     ]);
   }
-
-  const [colorArray, setColorArray] = useState([]);
 
   function renderItem({ item }) {
     return <BlockRGB red={item.red} green={item.green} blue={item.blue} />;
