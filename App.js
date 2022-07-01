@@ -1,13 +1,17 @@
 import { StatusBar } from "expo-status-bar";
-import * as React from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
+import BlockRGB from "./components/BlockRGB";
+
 function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>This is the Home Screen.</Text>
+      <BlockRGB red={255} green={0} blue={0} />
+      <BlockRGB red={0} green={255} blue={0} />
+      <BlockRGB red={0} green={0} blue={255} />
     </View>
   );
 }
@@ -18,7 +22,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={"Home"} component={HomeScreen} />
+        <Stack.Screen name={"Colour List"} component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
