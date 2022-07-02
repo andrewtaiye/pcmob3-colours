@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -18,6 +18,16 @@ import BlockRGB from "./components/BlockRGB";
 // ====================================================================================================================
 
 function HomeScreen({navigation}) {
+  useEffect(() => {
+    navigation.setOptions({
+      // headerRight: () => <Button onPress={addColor} title={"Add Color"}/>,
+      headerRight: () =>
+        <TouchableOpacity style={styles.headerButton} onPress={addColor}>
+          <Text style={{ color: "red" }}>Add Colour</Text>
+        </TouchableOpacity>,
+    });
+  });
+
   const [colorArray, setColorArray] = useState([]);
 
   function addColor() {
@@ -46,9 +56,6 @@ function HomeScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={addColor}>
-        <Text style={{ color: "red" }}>Add Colour</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={resetColor}>
         <Text style={{ color: "black" }}>Reset Colour</Text>
       </TouchableOpacity>
@@ -108,6 +115,9 @@ const styles = StyleSheet.create({
   button: {
     height: 40,
     justifyContent: "center",
+  },
+  headerButton: {
+    marginRight: 20,
   },
   colorDetailsText: {
     fontSize: 24,
