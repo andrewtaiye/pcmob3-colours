@@ -73,11 +73,20 @@ function HomeScreen({navigation}) {
 function ColourScreen({ route }) {
   const { red, green, blue } = route.params;
 
+  const colorValue = red + green + blue;
+  let fontColor;
+
+  if (colorValue < 382) {
+    fontColor = "white";
+  } else {
+    fontColor = "black";
+  }
+
   return (
     <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex: 1, justifyContent: 'center', alignItems: 'center',}}>
-      <Text style={styles.colorDetailsText}>Red: {red}</Text>
-      <Text style={styles.colorDetailsText}>Green: {green}</Text>
-      <Text style={styles.colorDetailsText}>Blue: {blue}</Text>
+      <Text style={[styles.colorDetailsText, {color: fontColor}]}>Red: {red}</Text>
+      <Text style={[styles.colorDetailsText, {color: fontColor}]}>Green: {green}</Text>
+      <Text style={[styles.colorDetailsText, {color: fontColor}]}>Blue: {blue}</Text>
     </View>
   );
 }
