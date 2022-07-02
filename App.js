@@ -66,9 +66,9 @@ function ColourScreen({ route }) {
 
   return (
     <View style={{backgroundColor: `rgb(${red}, ${green}, ${blue})`, flex: 1, justifyContent: 'center', alignItems: 'center',}}>
-      <Text>Red: {red}</Text>
-      <Text>Green: {green}</Text>
-      <Text>Blue: {blue}</Text>
+      <Text style={styles.colorDetailsText}>Red: {red}</Text>
+      <Text style={styles.colorDetailsText}>Green: {green}</Text>
+      <Text style={styles.colorDetailsText}>Blue: {blue}</Text>
     </View>
   );
 }
@@ -109,4 +109,8 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: "center",
   },
+  colorDetailsText: {
+    fontSize: 24,
+    marginBottom: 10,
+  }
 });
