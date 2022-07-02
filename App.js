@@ -138,6 +138,9 @@ const styles = StyleSheet.create({
     marginRight: 20,
     justifyContent: 'center',
   },
+  headerButton: {
+    marginRight: 20,
+  },
   colorDetailsText: {
     fontSize: 24,
     marginBottom: 10,
