@@ -13,6 +13,10 @@ import { NavigationContainer, useNavigation, StackActions } from "@react-navigat
 
 import BlockRGB from "./components/BlockRGB";
 
+// ====================================================================================================================
+// Home Screen Code
+// ====================================================================================================================
+
 function HomeScreen({navigation}) {
   const [colorArray, setColorArray] = useState([]);
 
@@ -28,6 +32,10 @@ function HomeScreen({navigation}) {
     ]);
   }
 
+  function resetColor() {
+    setColorArray([]);
+  }
+
   function renderItem({ item }) {
     return (
       <TouchableOpacity onPress={() => navigation.navigate("Colour Details", item)}>
@@ -41,10 +49,17 @@ function HomeScreen({navigation}) {
       <TouchableOpacity style={styles.button} onPress={addColor}>
         <Text style={{ color: "red" }}>Add Colour</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={resetColor}>
+        <Text style={{ color: "black" }}>Reset Colour</Text>
+      </TouchableOpacity>
       <FlatList style={styles.list} data={colorArray} renderItem={renderItem} />
     </View>
   );
 }
+
+// ====================================================================================================================
+// Colour Screen Code
+// ====================================================================================================================
 
 function ColourScreen({ route }) {
   const { red, green, blue } = route.params;
@@ -58,6 +73,10 @@ function ColourScreen({ route }) {
   );
 }
 
+// ====================================================================================================================
+// Main App Function
+// ====================================================================================================================
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -70,6 +89,10 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+// ====================================================================================================================
+// Styles
+// ====================================================================================================================
 
 const styles = StyleSheet.create({
   container: {
