@@ -46,10 +46,12 @@ function HomeScreen({navigation}) {
     setColorArray([]);
   }
 
+  const numColumns = 4;
+
   function renderItem({ item }) {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate("Colour Details", item)}>
-        <BlockRGB red={item.red} green={item.green} blue={item.blue} />
+      <TouchableOpacity onPress={() => navigation.navigate("Colour Details", item)} style={{aspectRatio: 1, flex: 1 / numColumns,}}>
+        <BlockRGB red={item.red} green={item.green} blue={item.blue}/>
       </TouchableOpacity>
     );
   }
@@ -57,9 +59,9 @@ function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={resetColor}>
-        <Text style={{ color: "black" }}>Reset Colour</Text>
+        <Text style={{ color: "#CACACA" }}>Reset Colour</Text>
       </TouchableOpacity>
-      <FlatList style={styles.list} data={colorArray} renderItem={renderItem} />
+      <FlatList style={styles.list} data={colorArray} renderItem={renderItem} numColumns={numColumns}/>
     </View>
   );
 }
@@ -115,9 +117,17 @@ const styles = StyleSheet.create({
   button: {
     height: 40,
     justifyContent: "center",
+    borderWidth: 2,
+    borderRadius: 15,
+    borderColor: '#CACACA',
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: 'grey',
   },
   headerButton: {
+    height: 40,
     marginRight: 20,
+    justifyContent: 'center',
   },
   colorDetailsText: {
     fontSize: 24,
