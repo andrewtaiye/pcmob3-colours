@@ -76,7 +76,7 @@ function ColourScreen({ route }) {
   const colorValue = red + green + blue;
   let fontColor;
 
-  if (colorValue < 382) {
+  if (colorValue < 255) {
     fontColor = "white";
   } else {
     fontColor = "black";
